@@ -1,0 +1,93 @@
+/* Entire page */
+.flex-container{
+  display: flex;
+  flex-direction: row;
+  padding-top: 20px;
+}
+
+/* Sidebar */
+.sideBar {
+  width: 100px;
+  background: #FFFFFF;
+  box-shadow: 0px 4px 100px rgba(0, 0, 0, 0.06);
+  height: 100%;
+  margin-right: 15px;
+}
+
+.current_oval {
+  width: 40px;
+  height: 40px;
+  left: 28px;
+  background: #000000;
+  box-shadow: 0px 4px 16px rgba(63, 139, 247, 0.2);
+  border-radius: 50%;
+  margin: auto;
+}
+
+.oval {
+  width: 40px;
+  height: 40px;
+  left: 28px;
+  background: #C7C7C7;
+  border-radius: 50%;
+  margin: auto;
+}
+
+.icon_bucket p {
+  text-align: center
+}
+
+/* Main display */
+.mainDisplay {
+  width: 100%;
+}
+
+#schedule_h1 {
+  height: 19px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 19px;
+  color: #000000;
+  opacity: 0.5;
+}
+
+#date {
+  height: 38px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 32px;
+  line-height: 37px;
+  color: #000000;
+}
+
+.schedule_header {
+  display: flex;
+  flex-direction: row;
+}
+
+.header_buttons {
+  justify-content: right;
+}
+
+table {
+  width: 100%;
+}
+
+.scheduled_h3 {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  color: #000000;
+}
+
+.scheduled_header_div {
+  background: #F3F3F3;
+  height: 49px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
