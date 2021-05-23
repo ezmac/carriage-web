@@ -22,6 +22,7 @@ const RideModal = ({
     date: moment(ride.startTime).format('YYYY-MM-DD'),
     pickupTime: moment(ride.startTime).format('kk:mm'),
     dropoffTime: moment(ride.endTime).format('kk:mm'),
+    repeating: ride.recurring,
     rider: `${ride.rider.firstName} ${ride.rider.lastName}`,
     pickupLoc: ride.startLocation.id
       ? ride.startLocation.name
@@ -59,6 +60,7 @@ const RideModal = ({
   };
 
   const saveDataThen = (next: () => void) => (data: ObjectType) => {
+    console.log(data);
     setFormData((prev) => ({ ...prev, ...data }));
     next();
   };
@@ -71,40 +73,78 @@ const RideModal = ({
         date,
         pickupTime,
         dropoffTime,
+        recurring,
         driver,
         rider,
         startLocation,
-        endLocation,
+        endLocation
       } = formData;
       const startTime = moment(`${date} ${pickupTime}`).toISOString();
       const endTime = moment(`${date} ${dropoffTime}`).toISOString();
-      const rideData: ObjectType = {
-        startTime,
-        endTime,
-        driver,
-        rider,
-        startLocation,
-        endLocation,
-      };
-      if (ride) {
-        if (ride.type === 'active') {
-          rideData.type = 'unscheduled';
+      if (recurring === "Does Not Repeat" || recurring === "Custom") {
+        const rideData: ObjectType = {
+          recurring,
+          startTime,
+          endTime,
+          driver,
+          rider,
+          startLocation,
+          endLocation
+        };
+        formData.recurring = false;
+        if (ride) {
+          if (ride.type === 'active') {
+            rideData.type = 'unscheduled';
+          }
+          fetch(
+            `/api/rides/${ride.id}`,
+            withDefaults({
+              method: 'PUT',
+              body: JSON.stringify(rideData),
+            }),
+          );
+        } else {
+          fetch(
+            '/api/rides',
+            withDefaults({
+              method: 'POST',
+              body: JSON.stringify(formData),
+            }),
+          );
         }
-        fetch(
-          `/api/rides/${ride.id}`,
-          withDefaults({
-            method: 'PUT',
-            body: JSON.stringify(rideData),
-          }),
-        );
       } else {
-        fetch(
-          '/api/rides',
-          withDefaults({
-            method: 'POST',
-            body: JSON.stringify(formData),
-          }),
-        );
+        const recurringDays = recurring === "Daily" ? [1,2,3,4,5,6,7] : [6]
+        formData.recurring = true
+        const rideData: ObjectType = {
+          recurring: true,
+          recurringDays,
+          startTime,
+          endTime,
+          driver,
+          rider,
+          startLocation,
+          endLocation
+        };
+        if (ride) {
+          if (ride.type === 'active') {
+            rideData.type = 'unscheduled';
+          }
+          fetch(
+            `/api/rides/${ride.id}`,
+            withDefaults({
+              method: 'PUT',
+              body: JSON.stringify(rideData),
+            }),
+          );
+        } else {
+          fetch(
+            '/api/rides',
+            withDefaults({
+              method: 'POST',
+              body: JSON.stringify(formData),
+            }),
+          ).then((response) => console.log("hello" + response))
+        }
       }
       setIsSubmitted(false);
       closeModal();

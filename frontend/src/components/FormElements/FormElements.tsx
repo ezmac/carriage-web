@@ -24,8 +24,20 @@ type InputType = (
   React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
 );
 
+type SelectType = (
+  React.DetailedHTMLProps<React.SelectHTMLAttributes<HTMLSelectElement>, HTMLSelectElement>
+);
+
+export const Select = React.forwardRef<HTMLSelectElement, SelectType>(
+  ({ className, children, ...props}, ref) => (
+    <select {...props} ref={ref}>
+      {children}
+    </select>
+  ),
+)
+
 export const Input = React.forwardRef<HTMLInputElement, InputType>(
-  ({ type, className, ...props }, ref) => (
+  ({ type, className, children, ...props }, ref) => (
     <input
       {...props}
       className={cn(styles.input, styles[`${type}Input`], className)}

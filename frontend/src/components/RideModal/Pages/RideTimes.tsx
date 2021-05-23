@@ -2,18 +2,20 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import cn from 'classnames';
 import { ModalPageProps } from '../../Modal/types';
-import { Button, Input, Label } from '../../FormElements/FormElements';
+import { Button, Input, Label, Select } from '../../FormElements/FormElements';
 import styles from '../ridemodal.module.css';
 
 const RideTimesPage = ({ formData, onSubmit }: ModalPageProps) => {
+  
   const { register, handleSubmit, getValues } = useForm({
     defaultValues: {
       date: formData?.date ?? '',
       pickupTime: formData?.pickupTime ?? '',
       dropoffTime: formData?.dropoffTime ?? '',
+      recurring: formData?.recurring ?? ''
     },
   });
-
+  console.log(formData);
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
       <div className={cn(styles.inputContainer, styles.rideTime)}>
@@ -23,7 +25,17 @@ const RideTimesPage = ({ formData, onSubmit }: ModalPageProps) => {
             type="date"
             name="date"
             ref={register({ required: true })}
+            className={styles.dateDisplay}
           />
+        </div>
+        <div className={styles.repeating}>
+          {/* <input type="text" name="recurring" /> */}
+          <Select className={styles.repeatingSelect} name="recurring" ref={register({required: true})}>
+            <option value="Does Not Repeat" className={styles.repeatingOption} >Does Not Repeat</option>
+            <option value="Daily" className={styles.repeatingOption}>Daily</option>
+            <option value="Weekly" className={styles.repeatingOption}>Weekly on Saturday</option>
+            <option value="Custom" className={styles.repeatingOption}>Custom</option>
+          </Select>
         </div>
         <div className={styles.pickupTime}>
           <Label htmlFor="pickupTime">Pickup time:</Label>

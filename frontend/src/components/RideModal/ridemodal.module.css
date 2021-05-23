@@ -25,10 +25,34 @@
 }
 
 .date {
-  grid-column: 1/3;
-  grid-row: 1;
+  grid-column: 1;
+  grid-row: 1/2;
   text-align: center;
 }
+
+.dateDisplay {
+  
+}
+
+.repeatingSelect {
+  font-size: 1rem;
+  font-family: inherit;
+  background-color: #EAE9E9;
+  border-radius: 0.3rem;
+  outline: none;
+  border: none;
+  padding: 0.4rem 0.5rem 0.4rem 0.5rem;
+}
+
+.repeatingOption {
+  outline: none;
+  border: none;
+}
+
+.repeatingOption:hover {
+  background-color:#CAC9C9;
+}
+
 
 .pickupTime {
   grid-column: 1;
