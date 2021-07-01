@@ -37,4 +37,4 @@ const schema = new dynamoose.Schema({
   photoLink: String,
 });
 
-export const Admin = dynamoose.model('Admins', schema, { create: false });
+export const Admin = dynamoose.model('Admins', schema, { create: true });

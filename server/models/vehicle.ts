@@ -22,4 +22,4 @@ const schema = new dynamoose.Schema({
   },
 });
 
-export const Vehicle = dynamoose.model('Vehicles', schema, { create: false });
+export const Vehicle = dynamoose.model('Vehicles', schema, { create: true });

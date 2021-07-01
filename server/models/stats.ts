@@ -64,4 +64,4 @@ const schema = new dynamoose.Schema(
   { saveUnknown: ['drivers.*'] }
 );
 
-export const Stats = dynamoose.model('Stats', schema, { create: false });
+export const Stats = dynamoose.model('Stats', schema, { create: true });

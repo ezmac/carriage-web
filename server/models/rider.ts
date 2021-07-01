@@ -105,4 +105,4 @@ const schema = new dynamoose.Schema({
   },
 });
 
-export const Rider = dynamoose.model('Riders', schema, { create: false });
+export const Rider = dynamoose.model('Riders', schema, { create: true});

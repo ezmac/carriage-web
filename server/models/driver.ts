@@ -85,4 +85,4 @@ const schema = new dynamoose.Schema({
   },
 });
 
-export const Driver = dynamoose.model('Drivers', schema, { create: false });
+export const Driver = dynamoose.model('Drivers', schema, { create: true});

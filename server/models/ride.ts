@@ -125,4 +125,4 @@ const schema = new dynamoose.Schema({
   },
 });
 
-export const Ride = dynamoose.model('Rides', schema, { create: false });
+export const Ride = dynamoose.model('Rides', schema, { create: true});

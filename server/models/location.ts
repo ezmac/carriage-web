@@ -44,4 +44,4 @@ const schema = new dynamoose.Schema({
   },
 });
 
-export const Location = dynamoose.model('Locations', schema, { create: false });
+export const Location = dynamoose.model('Locations', schema, { create: true });
