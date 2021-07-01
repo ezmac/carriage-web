@@ -6,7 +6,7 @@ dotenv.config({ path: path.join(__dirname, '.env') });
 export default {
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-  region: 'us-east-2',
+  region: process.env.AWS_REGION,
 };
 
 export const webpushValues = {

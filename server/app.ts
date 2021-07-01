@@ -33,6 +33,13 @@ const useHostname = process.env.USE_HOSTNAME === 'true';
 const hostname = (useHostname && process.env.HOSTNAME) || '';
 
 initDynamoose();
+if (process.env.DYNAMODB_URL) {
+  console.log("Dynamoose local mode engaged");
+  dynamoose.aws.ddb.local(process.env.DYNAMODB_URL);
+}
+else {
+  dynamoose.aws.sdk.config.update(config);
+}
 
 const app = express();
 app.use(cors());
