@@ -93,4 +93,10 @@ for i in ${!SSM_*}; do
   path=`write_ssm_to_file "${ssm_path}" "$output_file"`
 done
 
+if [[ $CREATE_DYNAMO_TABLES == true ]]; then
+  cd server
+  npx ts-node createTables.ts
+  cd -
+fi
+
 exec $@

@@ -1,0 +1,4 @@
+.env
+tmp
+nginx-certs/
+go.sh

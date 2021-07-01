@@ -4,7 +4,8 @@ WORKDIR /usr/src/app
 
 COPY . .
 
-RUN npm install && npm run postinstall && npm run heroku-postbuild && rm -rf node_modules && npm install --production && \
+RUN export REACT_APP_PUBLIC_VAPID_KEY=${REACT_APP_PUBLIC_VAPID_KEY} && npm install && npm install -g dynamoose moment && npm run postinstall && npm run heroku-postbuild && rm -rf node_modules && npm install --production && \
+  cd server && npm install --production && cd - && \
   chmod 755 /usr/src/app/secrets-entrypoint.sh && \
   rm -rf /usr/src/app/.git && \
   chown -R node:node /usr/src/app
