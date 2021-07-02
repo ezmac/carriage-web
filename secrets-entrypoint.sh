@@ -1,6 +1,6 @@
 #!/bin/bash
 # Config path is default /usr/src/app/config
-CONFIG_PATH="${CONFIG_PATH:-/usr/src/app}"
+CONFIG_PATH="${CONFIG_PATH:-./usr/src/app}"
 
 # set region for AWS calls (default us-east-1)
 export AWS_DEFAULT_REGION="${AWS_REGION:-us-east-1}"
@@ -20,7 +20,7 @@ function write_ssm_to_file() {
   output_file_path=$2
   ## TODO
   echo $output_file_path
-  `fetch_ssm_param_value $ssm_path`> $output_file_path
+  echo "`fetch_ssm_param_value $ssm_path`"> $output_file_path
   echo $output_file_path
 
 }
