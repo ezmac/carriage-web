@@ -1,6 +1,6 @@
 #!/bin/bash
 # Config path is default /usr/src/app/config
-CONFIG_PATH="${CONFIG_PATH:-/usr/src/app/}"
+CONFIG_PATH="${CONFIG_PATH:-/usr/src/app}"
 
 # set region for AWS calls (default us-east-1)
 export AWS_DEFAULT_REGION="${AWS_REGION:-us-east-1}"
@@ -19,7 +19,8 @@ function write_ssm_to_file() {
   ssm_path=$1
   output_file_path=$2
   ## TODO
-  fetch_ssm_param_value $ssm_path > $output_file_path
+  echo $output_file_path
+  `fetch_ssm_param_value $ssm_path`> $output_file_path
   echo $output_file_path
 
 }
@@ -45,7 +46,7 @@ function string_split() {
 
 }
 function debug_print(){
-  if [[ "$_DEBUG" ]]; then
+  if [[ ! -z "$DEBUG" ]]; then
     echo "$1"
   fi
 }
@@ -84,12 +85,13 @@ function get_file_path() {
   fi
 }
 
-
 # This is the replacement for all the customized ssm entrypoints.
 for i in ${!SSM_*}; do
+  echo "$i"
   # indirection (use the value of i as a variable name)
   ssm_path=${!i}
   output_file=`get_file_path "$i"`
+  echo $output_file
   path=`write_ssm_to_file "${ssm_path}" "$output_file"`
 done
 
