@@ -12,6 +12,10 @@ RUN export REACT_APP_PUBLIC_VAPID_KEY=${REACT_APP_PUBLIC_VAPID_KEY} && npm insta
 
 # we need pm2 globally
 RUN yarn global add pm2
+RUN apt-get update && apt-get install -y python-pip && \
+      pip install awscli && \
+      apt-get clean
+
 
 USER node
 
