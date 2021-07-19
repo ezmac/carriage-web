@@ -38,7 +38,7 @@ if (process.env.DYNAMODB_URL) {
   dynamoose.aws.ddb.local(process.env.DYNAMODB_URL);
 }
 else {
-  dynamoose.aws.sdk.config.update(config);
+  // dynamoose.aws.sdk.config.update(config);
 }
 
 const app = express();
