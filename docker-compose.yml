@@ -8,7 +8,7 @@ services:
     build:
       context: .
       args:
-        REACT_APP_PUBLIC_VAPID_KEY: BKHV3UpHKwaGj15As1pBKY9Z7ILwLFqO3yzIMv-58QsZ6BhwY8jkkHKtYZjZcOO9fkNL_IqNHT_bsrYhigZHkFg
+        REACT_APP_PUBLIC_VAPID_KEY: BKH
     volumes:
       - .env:/usr/src/app/server/.env:ro
       - .env:/usr/src/app/.env:ro
