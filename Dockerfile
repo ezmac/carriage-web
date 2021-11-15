@@ -28,5 +28,5 @@ WORKDIR /usr/src/app
 # Overwrite the entry-point script
 ENTRYPOINT ["/usr/src/app/secrets-entrypoint.sh"]
 
-CMD ["node", "run", "server/build/app.js"]
+CMD ["node",  "server/build/app.js"]
 
