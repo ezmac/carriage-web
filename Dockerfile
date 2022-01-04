@@ -1,4 +1,5 @@
 FROM node:16
+ARG REACT_APP_PUBLIC_VAPID_KEY
 
 WORKDIR /usr/src/app
 
